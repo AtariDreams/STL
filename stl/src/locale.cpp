@@ -79,7 +79,7 @@ locale::_Locimp* __CLRCALL_OR_CDECL locale::_Locimp::_Makeloc(
 
 void __CLRCALL_PURE_OR_CDECL locale::_Locimp::_Locimp_ctor(
     locale::_Locimp* _This, const locale::_Locimp& imp) { // construct a _Locimp from a copy
-    if (&imp == _This->_Clocptr) {
+    if (&imp == _Clocptr) {
         _BEGIN_LOCINFO(_Lobj)
         _Makeloc(_Lobj, locale::all, _This, nullptr);
         _END_LOCINFO()
@@ -107,7 +107,7 @@ void __CLRCALL_PURE_OR_CDECL locale::_Locimp::_Locimp_ctor(
 void __CLRCALL_PURE_OR_CDECL locale::_Locimp::_Locimp_Addfac(
     _Locimp* _This, locale::facet* ptrfac, size_t id) { // add a facet to a locale
     _BEGIN_LOCK(_LOCK_LOCALE)
-    const size_t MINCAT = 40; // minimum number of facets in a locale
+    constexpr size_t MINCAT = 40; // minimum number of facets in a locale
 
     if (_This->_Facetcount <= id) { // make facet vector larger
         size_t count = id + 1;
@@ -115,7 +115,7 @@ void __CLRCALL_PURE_OR_CDECL locale::_Locimp::_Locimp_Addfac(
             count = MINCAT;
         }
 
-        locale::facet** ptrnewvec =
+        const auto ptrnewvec =
             static_cast<locale::facet**>(_realloc_crt(_This->_Facetvec, count * sizeof(locale::facet**)));
         if (ptrnewvec == nullptr) { // report no memory
             _Xbad_alloc();

@@ -155,7 +155,7 @@ namespace {
     ) {
         // copy an object of type denoted by *_PType from _Src to _Dest; throws whatever the copy ctor of the type
         // denoted by *_PType throws
-        if ((_PType->properties & CT_IsSimpleType) || _PType->copyFunction == 0) {
+        if ((_PType->properties & CT_IsSimpleType) || _PType->copyFunction == nullptr) {
             memcpy(_Dest, _Src, _PType->sizeOrOffset);
 
             if (_PType->properties & CT_IsWinRTHandle) {

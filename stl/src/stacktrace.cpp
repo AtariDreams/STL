@@ -145,8 +145,8 @@ namespace {
 
                 const size_t new_off = string_fill(
                     fill, off + size, str, [address, off, size, &new_size, &hr, &displacement](char* s, size_t) {
-                        hr = debug_symbols->GetNameByOffset(reinterpret_cast<uintptr_t>(address), s + off,
-                            static_cast<ULONG>(size + 1), &new_size, &displacement);
+                        hr = debug_symbols->GetNameByOffset(
+                            reinterpret_cast<uintptr_t>(address), s + off, size + 1, &new_size, &displacement);
 
                         return (hr == S_OK) ? off + new_size - 1 : off;
                     });

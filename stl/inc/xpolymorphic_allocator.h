@@ -149,9 +149,9 @@ namespace pmr {
         }
 
     private:
-        virtual void* do_allocate(size_t _Bytes, size_t _Align)               = 0;
-        virtual void do_deallocate(void* _Ptr, size_t _Bytes, size_t _Align)  = 0;
-        virtual bool do_is_equal(const memory_resource& _That) const noexcept = 0;
+        virtual void* do_allocate(size_t _Bytes, size_t _Align)                          = 0;
+        virtual void do_deallocate(void* _Ptr, size_t _Bytes, size_t _Align)             = 0;
+        _NODISCARD virtual bool do_is_equal(const memory_resource& _That) const noexcept = 0;
     };
 
     _NODISCARD inline bool operator==(const memory_resource& _Left, const memory_resource& _Right) noexcept {
@@ -269,11 +269,12 @@ namespace pmr {
         }
 
         template <class _Uty>
-        _CXX17_DEPRECATE_POLYMORPHIC_ALLOCATOR_DESTROY void destroy(_Uty* const _Ptr) noexcept /* strengthened */ {
+        _CXX17_DEPRECATE_POLYMORPHIC_ALLOCATOR_DESTROY void destroy(_Uty* const _Ptr) noexcept
+        /* strengthened */ {
             _Destroy_in_place(*_Ptr);
         }
 
-        _NODISCARD polymorphic_allocator select_on_container_copy_construction() const noexcept /* strengthened */ {
+        _NODISCARD polymorphic_allocator select_on_container_copy_construction() noexcept /* strengthened */ {
             // don't propagate on copy
             return {};
         }

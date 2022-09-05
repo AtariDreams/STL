@@ -87,7 +87,7 @@ void _Thrd_yield() { // surrender remainder of timeslice
 
 // TRANSITION, ABI: _Thrd_equal() is preserved for binary compatibility
 _CRTIMP2_PURE int _Thrd_equal(_Thrd_t thr0, _Thrd_t thr1) { // return 1 if thr0 and thr1 identify same thread
-    return thr0._Id == thr1._Id;
+    return static_cast<int>(thr0._Id == thr1._Id);
 }
 
 // TRANSITION, ABI: _Thrd_current() is preserved for binary compatibility

@@ -213,7 +213,7 @@ struct
 
             int64_t __k = 0;
             int64_t __t _ZERO_OR_NO_INIT;
-            for (int __i = 0; __i < static_cast<int>(__n); ++__i) {
+            for (int __i = 0; __i < __n; ++__i) {
                 const auto _Prod = static_cast<uint32_t>(__qhat) * static_cast<uint64_t>(__v[__i]);
                 __t              = __u[__i + __j] - __k - static_cast<uint32_t>(_Prod);
                 __u[__i + __j]   = static_cast<uint32_t>(__t);
@@ -226,7 +226,7 @@ struct
             if (__t < 0) {
                 --__q[__j];
                 __k = 0;
-                for (int __i = 0; __i < static_cast<int>(__n); ++__i) {
+                for (int __i = 0; __i < __n; ++__i) {
                     __t            = __u[__i + __j] + __k + __v[__i];
                     __u[__i + __j] = static_cast<uint32_t>(__t);
                     __k            = __t >> 32;
