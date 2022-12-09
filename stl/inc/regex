@@ -1337,7 +1337,7 @@ class _Node_assert : public _Node_base { // node that holds an ECMAScript assert
 public:
     explicit _Node_assert(_Node_type _Ty, _Node_flags _Fl = _Fl_none) : _Node_base(_Ty, _Fl), _Child(nullptr) {}
 
-    ~_Node_assert() noexcept {
+    ~_Node_assert() noexcept override {
         _Destroy_node(_Child);
     }
 
@@ -1373,7 +1373,7 @@ public:
         : _Node_base(_Ty, _Fl), _Coll(nullptr), _Small(nullptr), _Large(nullptr), _Ranges(nullptr), _Classes{},
           _Equiv(nullptr) {}
 
-    ~_Node_class() noexcept {
+    ~_Node_class() noexcept override {
         _Tidy(_Coll);
         delete _Small;
         delete _Large;
@@ -1407,7 +1407,7 @@ public:
     explicit _Node_if(_Node_base* _End)
         : _Node_base(_N_if, _Fl_none), _Endif(static_cast<_Node_endif*>(_End)), _Child(nullptr) {}
 
-    ~_Node_if() noexcept {
+    ~_Node_if() noexcept override {
         _Node_if* _Cur = _Child;
         while (_Cur) { // destroy branch
             _Node_if* _Tmp = _Cur;

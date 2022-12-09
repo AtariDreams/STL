@@ -166,7 +166,7 @@ public:
 
     class _CRTIMP2_PURE_IMPORT _Locimp : public facet { // reference-counted actual implementation of a locale
     protected:
-        __CLR_OR_THIS_CALL ~_Locimp() noexcept {
+        __CLR_OR_THIS_CALL ~_Locimp() noexcept override {
             _Locimp_dtor(this);
         }
 
@@ -633,7 +633,7 @@ public:
         return do_encoding();
     }
 
-    __CLR_OR_THIS_CALL ~codecvt_base() noexcept {}
+    __CLR_OR_THIS_CALL ~codecvt_base() noexcept override {}
 
 protected:
     virtual bool __CLR_OR_THIS_CALL do_always_noconv() const noexcept {
