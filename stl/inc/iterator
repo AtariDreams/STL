@@ -249,7 +249,7 @@ public:
         "istream_iterator<T> requires T to be default constructible, copy constructible, and copy assignable. "
         "(N4835 [istream.iterator]/2)");
 
-    constexpr istream_iterator() noexcept(is_nothrow_default_constructible_v<_Ty>) /* strengthened */ {}
+    constexpr istream_iterator() noexcept(is_nothrow_default_constructible_v<_Ty>) /* strengthened */ = default;
 
 #ifdef __cpp_lib_concepts
     constexpr istream_iterator(default_sentinel_t) noexcept(is_nothrow_default_constructible_v<_Ty>) // strengthened

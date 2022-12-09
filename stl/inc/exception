@@ -335,7 +335,7 @@ public:
 
     nested_exception(const nested_exception&) noexcept            = default;
     nested_exception& operator=(const nested_exception&) noexcept = default;
-    virtual ~nested_exception() noexcept {}
+    virtual ~nested_exception() noexcept = default;
 
     [[noreturn]] void rethrow_nested() const { // throw wrapped exception_ptr
         if (_Exc) {

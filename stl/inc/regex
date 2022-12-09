@@ -1302,7 +1302,7 @@ public:
     _Node_base* _Next;
     _Node_base* _Prev;
 
-    virtual ~_Node_base() noexcept {}
+    virtual ~_Node_base() noexcept = default;
 };
 
 inline void _Destroy_node(_Node_base* _Nx, _Node_base* _Ne = nullptr) noexcept { // destroy sublist of nodes

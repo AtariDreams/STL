@@ -467,7 +467,7 @@ public:
         }
     }
 
-    __CLR_OR_THIS_CALL ~istrstream() noexcept override {}
+    __CLR_OR_THIS_CALL ~istrstream() noexcept override = default;
 
     _NODISCARD _Mysb* __CLR_OR_THIS_CALL rdbuf() const {
         return const_cast<_Mysb*>(&_Strbuffer);
@@ -522,7 +522,7 @@ public:
         }
     }
 
-    __CLR_OR_THIS_CALL ~ostrstream() noexcept override {}
+    __CLR_OR_THIS_CALL ~ostrstream() noexcept override = default;
 
     _NODISCARD _Mysb* __CLR_OR_THIS_CALL rdbuf() const {
         return const_cast<_Mysb*>(&_Strbuffer);
@@ -590,7 +590,7 @@ public:
         }
     }
 
-    __CLR_OR_THIS_CALL ~strstream() noexcept override {}
+    __CLR_OR_THIS_CALL ~strstream() noexcept override = default;
 
     _NODISCARD _Mysb* __CLR_OR_THIS_CALL rdbuf() const {
         return const_cast<_Mysb*>(&_Strbuffer);

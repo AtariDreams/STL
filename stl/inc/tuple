@@ -187,7 +187,7 @@ class tuple<> { // empty tuple
 public:
     constexpr tuple() noexcept = default; /* strengthened */
 
-    constexpr tuple(const tuple&) noexcept /* strengthened */ {} // TRANSITION, ABI: should be defaulted
+    constexpr tuple(const tuple&) noexcept /* strengthened */ = default; // TRANSITION, ABI: should be defaulted
 
     template <class _Alloc>
     _CONSTEXPR20 tuple(allocator_arg_t, const _Alloc&) noexcept /* strengthened */ {}

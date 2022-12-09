@@ -456,7 +456,7 @@ public:
     size_t _Stdstr{0}; // if > 0 index of standard stream to suppress destruction
 
 protected:
-    __CLR_OR_THIS_CALL ios_base() {}
+    __CLR_OR_THIS_CALL ios_base() = default;
 
     void __CLR_OR_THIS_CALL _Init() { // initialize a new ios_base
         _Ploc   = nullptr;

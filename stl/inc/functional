@@ -643,7 +643,7 @@ _NODISCARD _CONSTEXPR20 _Not_fn<decay_t<_Callable>> not_fn(_Callable&& _Obj) noe
 
 _EXPORT_STD class bad_function_call : public exception { // exception thrown when an empty std::function is called
 public:
-    bad_function_call() noexcept {}
+    bad_function_call() noexcept = default;
 
     _NODISCARD const char* __CLR_OR_THIS_CALL what() const noexcept override {
         // return pointer to message string

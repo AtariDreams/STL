@@ -815,7 +815,7 @@ public:
     }
 #endif // _HAS_DEPRECATED_ALLOCATOR_MEMBERS
 
-    constexpr allocator() noexcept {}
+    constexpr allocator() noexcept = default;
 
     constexpr allocator(const allocator&) noexcept = default;
     template <class _Other>

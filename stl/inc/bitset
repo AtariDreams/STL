@@ -32,7 +32,7 @@ public:
         friend bitset<_Bits>;
 
     public:
-        _CONSTEXPR23 ~reference() noexcept {} // TRANSITION, ABI
+        _CONSTEXPR23 ~reference() noexcept = default; // TRANSITION, ABI
 
         _CONSTEXPR23 reference& operator=(const bool _Val) noexcept {
             _Pbitset->_Set_unchecked(_Mypos, _Val);

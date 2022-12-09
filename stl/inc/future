@@ -961,7 +961,7 @@ private:
     using _Mybase = _State_manager<int>;
 
 public:
-    future() noexcept {}
+    future() noexcept = default;
 
     future(future&& _Other) noexcept : _Mybase(_STD move(_Other), true) {}
 
@@ -972,7 +972,7 @@ public:
 
     future(const _Mybase& _State, _Nil) : _Mybase(_State, true) {}
 
-    ~future() noexcept {}
+    ~future() noexcept = default;
 
     void get() {
         // block until ready then return or throw the stored exception
@@ -1062,14 +1062,11 @@ private:
     using _Mybase = _State_manager<int>;
 
 public:
-    shared_future() noexcept {}
+    shared_future() noexcept = default;
 
     shared_future(const shared_future& _Other) noexcept : _Mybase(_Other) {}
 
-    shared_future& operator=(const shared_future& _Right) noexcept {
-        _Mybase::operator=(_Right);
-        return *this;
-    }
+    shared_future& operator=(const shared_future& _Right) noexcept = default;
 
     shared_future(shared_future&& _Other) noexcept : _Mybase(_STD move(_Other)) {}
 
@@ -1080,7 +1077,7 @@ public:
         return *this;
     }
 
-    ~shared_future() noexcept {}
+    ~shared_future() noexcept = default;
 
     void get() const { // block until ready then return or throw the stored exception
         this->_Get_value();
@@ -1104,7 +1101,7 @@ public:
         return *this;
     }
 
-    ~_Promise() noexcept {}
+    ~_Promise() noexcept = default;
 
     void _Swap(_Promise& _Other) {
         _State._Swap(_Other._State);

@@ -316,7 +316,7 @@ public:
 
     enum { _EEN_SIZE = _Size }; // helper for expression evaluator
 
-    _CONSTEXPR17 _Array_iterator() noexcept {}
+    _CONSTEXPR17 _Array_iterator() noexcept = default;
 
     _CONSTEXPR17 explicit _Array_iterator(pointer _Parg, size_t _Off = 0) noexcept : _Mybase(_Parg, _Off) {}
 

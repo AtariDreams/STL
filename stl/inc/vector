@@ -3078,7 +3078,7 @@ public:
         return insert(_Where, _Ilist.begin(), _Ilist.end());
     }
 
-    _CONSTEXPR20 ~vector() noexcept {}
+    _CONSTEXPR20 ~vector() noexcept = default;
 
     _CONSTEXPR20 vector& operator=(const vector& _Right) {
         if (this == _STD addressof(_Right)) {

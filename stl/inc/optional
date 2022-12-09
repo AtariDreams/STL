@@ -223,7 +223,7 @@ public:
 
     using value_type = _Ty;
 
-    constexpr optional() noexcept {}
+    constexpr optional() noexcept = default;
     constexpr optional(nullopt_t) noexcept {}
 
     template <class... _Types, enable_if_t<is_constructible_v<_Ty, _Types...>, int> = 0>

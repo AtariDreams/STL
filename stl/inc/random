@@ -151,7 +151,7 @@ _EXPORT_STD class seed_seq { // standard sequence of seed values
 public:
     using result_type = unsigned int;
 
-    seed_seq() noexcept {}
+    seed_seq() noexcept = default;
 
     template <class _Ty, enable_if_t<is_integral_v<_Ty>, int> = 0>
     seed_seq(initializer_list<_Ty> _Ilist) {
@@ -5071,7 +5071,7 @@ _EXPORT_STD class random_device { // class to generate random numbers (from hard
 public:
     using result_type = unsigned int;
 
-    random_device() {}
+    random_device() = default;
 
     explicit random_device(const string&) {}
 

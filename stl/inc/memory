@@ -998,7 +998,7 @@ public:
 
 _EXPORT_STD class bad_weak_ptr : public exception { // exception type for invalid use of expired weak_ptr object
 public:
-    bad_weak_ptr() noexcept {}
+    bad_weak_ptr() noexcept = default;
 
     _NODISCARD const char* __CLR_OR_THIS_CALL what() const noexcept override {
         // return pointer to message string
@@ -1036,7 +1036,7 @@ public:
     _Ref_count_base(const _Ref_count_base&)            = delete;
     _Ref_count_base& operator=(const _Ref_count_base&) = delete;
 
-    virtual ~_Ref_count_base() noexcept {} // TRANSITION, should be non-virtual
+    virtual ~_Ref_count_base() noexcept = default; // TRANSITION, should be non-virtual
 
     bool _Incref_nz() noexcept { // increment use count if not zero, return true if successful
         auto& _Volatile_uses = reinterpret_cast<volatile long&>(_Uses);
@@ -2906,7 +2906,7 @@ public:
             false;
 #endif // _M_CEE_PURE
 
-    constexpr weak_ptr() noexcept {}
+    constexpr weak_ptr() noexcept = default;
 
     weak_ptr(const weak_ptr& _Other) noexcept {
         this->_Weakly_construct_from(_Other); // same type, no conversion

@@ -32,7 +32,7 @@ public:
     shared_mutex() noexcept // strengthened
         : _Myhandle(nullptr) {}
 
-    ~shared_mutex() noexcept {}
+    ~shared_mutex() noexcept = default;
 
     void lock() noexcept /* strengthened */ { // lock exclusive
         _Smtx_lock_exclusive(&_Myhandle);
@@ -79,7 +79,7 @@ public:
     shared_timed_mutex() noexcept // strengthened
         : _Mymtx(), _Read_queue(), _Write_queue(), _Readers(0), _Writing(false) {}
 
-    ~shared_timed_mutex() noexcept {}
+    ~shared_timed_mutex() noexcept = default;
 
     void lock() { // lock exclusive
         unique_lock<mutex> _Lock(_Mymtx);
