@@ -85,7 +85,7 @@ namespace Concurrency {
 
             bool wait_for(stl_critical_section_interface* lock, unsigned int timeout) override {
                 return SleepConditionVariableSRW(&m_condition_variable,
-                           static_cast<stl_critical_section_win7*>(lock)->native_handle(), timeout, 0)
+                           dynamic_cast<stl_critical_section_win7*>(lock)->native_handle(), timeout, 0)
                     != 0;
             }
 

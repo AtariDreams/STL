@@ -1405,7 +1405,7 @@ public:
 class _Node_if : public _Node_base { // node that marks the beginning of an alternative
 public:
     explicit _Node_if(_Node_base* _End)
-        : _Node_base(_N_if, _Fl_none), _Endif(static_cast<_Node_endif*>(_End)), _Child(nullptr) {}
+        : _Node_base(_N_if, _Fl_none), _Endif(dynamic_cast<_Node_endif*>(_End)), _Child(nullptr) {}
 
     ~_Node_if() noexcept override {
         _Node_if* _Cur = _Child;
@@ -4452,7 +4452,7 @@ inline void _Calculate_loop_simplicity(_Node_base* _Nx, _Node_base* _Ne, _Node_r
             }
 
             // visit each branch of the if
-            for (_Node_if* _Branch = static_cast<_Node_if*>(_Nx)->_Child; _Branch; _Branch = _Branch->_Child) {
+            for (_Node_if* _Branch = dynamic_cast<_Node_if*>(_Nx)->_Child; _Branch; _Branch = _Branch->_Child) {
                 _Calculate_loop_simplicity(_Branch->_Next, _Branch->_Endif, _Outer_rep);
             }
 
@@ -4461,19 +4461,19 @@ inline void _Calculate_loop_simplicity(_Node_base* _Nx, _Node_base* _Ne, _Node_r
         case _N_neg_assert:
             // visit the assertion body
             // note _Outer_rep being reset: the assertion regex is completely independent
-            _Calculate_loop_simplicity(static_cast<_Node_assert*>(_Nx)->_Child, nullptr, nullptr);
+            _Calculate_loop_simplicity(dynamic_cast<_Node_assert*>(_Nx)->_Child, nullptr, nullptr);
             break;
         case _N_rep:
             // _Node_rep inside another _Node_rep makes both not simple
             if (_Outer_rep) {
                 _Outer_rep->_Simple_loop                   = 0;
-                static_cast<_Node_rep*>(_Nx)->_Simple_loop = 0;
+                dynamic_cast<_Node_rep*>(_Nx)->_Simple_loop = 0;
             } else {
-                _Outer_rep = static_cast<_Node_rep*>(_Nx);
+                _Outer_rep = dynamic_cast<_Node_rep*>(_Nx);
             }
             break;
         case _N_end_rep:
-            if (_Outer_rep == static_cast<_Node_end_rep*>(_Nx)->_Begin_rep) {
+            if (_Outer_rep == dynamic_cast<_Node_end_rep*>(_Nx)->_Begin_rep) {
                 // if the _Node_rep is still undetermined when we reach its end, it is simple
                 _Analysis_assume_(_Outer_rep);
                 if (_Outer_rep->_Simple_loop == -1) {
