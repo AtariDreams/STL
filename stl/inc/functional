@@ -1925,17 +1925,17 @@ template <class _Cv_TiD>
 struct _Select_fixer<_Cv_TiD, false, true, 0> { // nested bind fixer
     template <class _Untuple, size_t... _Jx>
     static constexpr auto _Apply(_Cv_TiD& _Tid, _Untuple&& _Ut, index_sequence<_Jx...>) noexcept(
-        noexcept(_Tid(_STD get<_Jx>(_STD move(_Ut))...))) -> decltype(_Tid(_STD get<_Jx>(_STD move(_Ut))...)) {
+        noexcept(_Tid(_STD get<_Jx>(::std::forward<_Untuple>(_Ut))...))) -> decltype(_Tid(_STD get<_Jx>(::std::forward<_Untuple>(_Ut))...)) {
         // call a nested bind expression
-        return _Tid(_STD get<_Jx>(_STD move(_Ut))...);
+        return _Tid(_STD get<_Jx>(::std::forward<_Untuple>(_Ut))...);
     }
 
     template <class _Untuple>
     static constexpr auto _Fix(_Cv_TiD& _Tid, _Untuple&& _Ut) noexcept(
-        noexcept(_Apply(_Tid, _STD move(_Ut), make_index_sequence<tuple_size_v<_Untuple>>{})))
-        -> decltype(_Apply(_Tid, _STD move(_Ut), make_index_sequence<tuple_size_v<_Untuple>>{})) {
+        noexcept(_Apply(_Tid, ::std::forward<_Untuple>(_Ut), make_index_sequence<tuple_size_v<_Untuple>>{})))
+        -> decltype(_Apply(_Tid, ::std::forward<_Untuple>(_Ut), make_index_sequence<tuple_size_v<_Untuple>>{})) {
         // call a nested bind expression
-        return _Apply(_Tid, _STD move(_Ut), make_index_sequence<tuple_size_v<_Untuple>>{});
+        return _Apply(_Tid, ::std::forward<_Untuple>(_Ut), make_index_sequence<tuple_size_v<_Untuple>>{});
     }
 };
 
@@ -1954,25 +1954,25 @@ struct _Select_fixer<_Cv_TiD, false, false, _Jx> { // placeholder fixer
 
     template <class _Untuple>
     static constexpr auto _Fix(_Cv_TiD&, _Untuple&& _Ut) noexcept
-        -> decltype(_STD get<_Jx - 1>(_STD move(_Ut))) { // choose the Jth unbound argument (1-based indexing)
-        return _STD get<_Jx - 1>(_STD move(_Ut));
+        -> decltype(_STD get<_Jx - 1>(::std::forward<_Untuple>(_Ut))) { // choose the Jth unbound argument (1-based indexing)
+        return _STD get<_Jx - 1>(::std::forward<_Untuple>(_Ut));
     }
 };
 
 template <class _Cv_TiD, class _Untuple>
 constexpr auto _Fix_arg(_Cv_TiD& _Tid, _Untuple&& _Ut) noexcept(
-    noexcept(_Select_fixer<_Cv_TiD>::_Fix(_Tid, _STD move(_Ut))))
-    -> decltype(_Select_fixer<_Cv_TiD>::_Fix(_Tid, _STD move(_Ut))) { // translate an argument for bind
-    return _Select_fixer<_Cv_TiD>::_Fix(_Tid, _STD move(_Ut));
+    noexcept(_Select_fixer<_Cv_TiD>::_Fix(_Tid, ::std::forward<_Untuple>(_Ut))))
+    -> decltype(_Select_fixer<_Cv_TiD>::_Fix(_Tid, ::std::forward<_Untuple>(_Ut))) { // translate an argument for bind
+    return _Select_fixer<_Cv_TiD>::_Fix(_Tid, ::std::forward<_Untuple>(_Ut));
 }
 
 template <class _Ret, size_t... _Ix, class _Cv_FD, class _Cv_tuple_TiD, class _Untuple>
 _CONSTEXPR20 auto _Call_binder(_Invoker_ret<_Ret>, index_sequence<_Ix...>, _Cv_FD& _Obj, _Cv_tuple_TiD& _Tpl,
     _Untuple&& _Ut) noexcept(noexcept(_Invoker_ret<_Ret>::_Call(_Obj,
-    _Fix_arg(_STD get<_Ix>(_Tpl), _STD move(_Ut))...)))
-    -> decltype(_Invoker_ret<_Ret>::_Call(_Obj, _Fix_arg(_STD get<_Ix>(_Tpl), _STD move(_Ut))...)) {
+    _Fix_arg(_STD get<_Ix>(_Tpl), ::std::forward<_Untuple>(_Ut))...)))
+    -> decltype(_Invoker_ret<_Ret>::_Call(_Obj, _Fix_arg(_STD get<_Ix>(_Tpl), ::std::forward<_Untuple>(_Ut))...)) {
     // bind() and bind<R>() invocation
-    return _Invoker_ret<_Ret>::_Call(_Obj, _Fix_arg(_STD get<_Ix>(_Tpl), _STD move(_Ut))...);
+    return _Invoker_ret<_Ret>::_Call(_Obj, _Fix_arg(_STD get<_Ix>(_Tpl), ::std::forward<_Untuple>(_Ut))...);
 }
 
 template <class _Ret>
