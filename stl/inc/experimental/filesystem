@@ -860,7 +860,7 @@ public:
             return _Wch;
         });
 
-        if (0 < _Mystr.size() && 0 < _Str.size() && _Mystr.back() != _FS_COLON && !_FS_ISSEP(_Mystr.back())
+        if (!_Mystr.empty() && !_Str.empty() && _Mystr.back() != _FS_COLON && !_FS_ISSEP(_Mystr.back())
             && !_FS_ISSEP(_Str[0])) {
             _Mystr.push_back(_FS_PREF); // add needed separator
         }
