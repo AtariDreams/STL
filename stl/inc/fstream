@@ -191,13 +191,13 @@ public:
 
     basic_filebuf(_Uninitialized) : _Mysb(_Noinit) {}
 
-    basic_filebuf(basic_filebuf&& _Right) {
+    basic_filebuf(basic_filebuf&& _Right)  noexcept {
         _Init(_Right._Myfile, _Newfl); // match buffering styles
         _Init(static_cast<FILE*>(nullptr), _Closefl); // then make *this look closed
         _Assign_rv(_STD move(_Right));
     }
 
-    basic_filebuf& operator=(basic_filebuf&& _Right) {
+    basic_filebuf& operator=(basic_filebuf&& _Right)  noexcept {
         _Assign_rv(_STD move(_Right));
         return *this;
     }
@@ -856,11 +856,11 @@ public:
 
     explicit basic_ifstream(FILE* _File) : _Mybase(_STD addressof(_Filebuffer)), _Filebuffer(_File) {} // extension
 
-    basic_ifstream(basic_ifstream&& _Right) : _Mybase(_STD addressof(_Filebuffer)) {
+    basic_ifstream(basic_ifstream&& _Right)  noexcept : _Mybase(_STD addressof(_Filebuffer)) {
         _Assign_rv(_STD move(_Right));
     }
 
-    basic_ifstream& operator=(basic_ifstream&& _Right) {
+    basic_ifstream& operator=(basic_ifstream&& _Right)  noexcept {
         _Assign_rv(_STD move(_Right));
         return *this;
     }
@@ -1039,11 +1039,11 @@ public:
 
     explicit basic_ofstream(FILE* _File) : _Mybase(_STD addressof(_Filebuffer)), _Filebuffer(_File) {} // extension
 
-    basic_ofstream(basic_ofstream&& _Right) : _Mybase(_STD addressof(_Filebuffer)) {
+    basic_ofstream(basic_ofstream&& _Right)  noexcept : _Mybase(_STD addressof(_Filebuffer)) {
         _Assign_rv(_STD move(_Right));
     }
 
-    basic_ofstream& operator=(basic_ofstream&& _Right) {
+    basic_ofstream& operator=(basic_ofstream&& _Right)  noexcept {
         _Assign_rv(_STD move(_Right));
         return *this;
     }
@@ -1227,11 +1227,11 @@ public:
 
     explicit basic_fstream(FILE* _File) : _Mybase(_STD addressof(_Filebuffer)), _Filebuffer(_File) {} // extension
 
-    basic_fstream(basic_fstream&& _Right) : _Mybase(_STD addressof(_Filebuffer)) {
+    basic_fstream(basic_fstream&& _Right)  noexcept : _Mybase(_STD addressof(_Filebuffer)) {
         _Assign_rv(_STD move(_Right));
     }
 
-    basic_fstream& operator=(basic_fstream&& _Right) {
+    basic_fstream& operator=(basic_fstream&& _Right)  noexcept {
         _Assign_rv(_STD move(_Right));
         return *this;
     }

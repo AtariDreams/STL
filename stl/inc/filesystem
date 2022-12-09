@@ -1413,9 +1413,9 @@ namespace filesystem {
             : _Position(_Position_), _Element(_STD move(_Element_)), _Mypath(_Mypath_) {}
 
         _Path_iterator(const _Path_iterator&)            = default;
-        _Path_iterator(_Path_iterator&&)                 = default;
+        _Path_iterator(_Path_iterator&&)                  noexcept = default;
         _Path_iterator& operator=(const _Path_iterator&) = default;
-        _Path_iterator& operator=(_Path_iterator&&)      = default;
+        _Path_iterator& operator=(_Path_iterator&&)       noexcept = default;
 
         _NODISCARD reference operator*() const noexcept {
             return _Element;

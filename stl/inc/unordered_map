@@ -249,7 +249,7 @@ public:
         return *this;
     }
 
-    unordered_map(unordered_map&& _Right) : _Mybase(_STD move(_Right)) {}
+    unordered_map(unordered_map&& _Right)  noexcept : _Mybase(_STD move(_Right)) {}
 
     unordered_map(unordered_map&& _Right, const allocator_type& _Al) : _Mybase(_STD move(_Right), _Al) {}
 
@@ -734,7 +734,7 @@ public:
         return *this;
     }
 
-    unordered_multimap(unordered_multimap&& _Right) : _Mybase(_STD move(_Right)) {}
+    unordered_multimap(unordered_multimap&& _Right)  noexcept : _Mybase(_STD move(_Right)) {}
 
     unordered_multimap(unordered_multimap&& _Right, const allocator_type& _Al) : _Mybase(_STD move(_Right), _Al) {}
 

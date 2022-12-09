@@ -285,7 +285,7 @@ public:
         : tuple(_Exact_args_t{}, _STD forward<_This2>(_This_arg), _STD forward<_Rest2>(_Rest_arg)...) {}
 
     tuple(const tuple&) = default;
-    tuple(tuple&&)      = default;
+    tuple(tuple&&)       noexcept = default;
 
 #if _HAS_CXX23
     template <class... _Other, enable_if_t<conjunction_v<_STD _Tuple_constructible_val<tuple, _Other&...>,

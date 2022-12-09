@@ -123,9 +123,9 @@ struct _Optional_destruct_base<_Ty, false> { // either contains a value of _Ty o
 #endif // _HAS_CXX23
 
     _Optional_destruct_base(const _Optional_destruct_base&)            = default;
-    _Optional_destruct_base(_Optional_destruct_base&&)                 = default;
+    _Optional_destruct_base(_Optional_destruct_base&&)                  noexcept = default;
     _Optional_destruct_base& operator=(const _Optional_destruct_base&) = default;
-    _Optional_destruct_base& operator=(_Optional_destruct_base&&)      = default;
+    _Optional_destruct_base& operator=(_Optional_destruct_base&&)       noexcept = default;
 
     _CONSTEXPR20 void reset() noexcept {
         if (_Has_value) {
