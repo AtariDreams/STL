@@ -24,7 +24,7 @@ namespace {
     };
 
     using _Map_alloc = _STD _Crt_allocator<_STD pair<void* const, _Mutex_count_pair>>;
-    using _Map_type  = _STD map<void*, _Mutex_count_pair, _STD less<void*>, _Map_alloc>;
+    using _Map_type  = _STD map<void*, _Mutex_count_pair, _STD less<>, _Map_alloc>;
 
     _Map_type _Lookup_map;
     _STD shared_mutex _Lookup_mutex;
