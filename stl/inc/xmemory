@@ -1079,7 +1079,7 @@ public:
     _Container_proxy* _Myproxy = nullptr;
 
 private:
-    _CONSTEXPR20 void _Orphan_all_unlocked_v3() noexcept;
+    _CONSTEXPR20 void _Orphan_all_unlocked_v3() const noexcept;
     _CONSTEXPR20 void _Swap_proxy_and_iterators_unlocked(_Container_base12&) noexcept;
 
     void _Orphan_all_locked_v3() noexcept {
@@ -1222,7 +1222,7 @@ private:
 #endif // _ITERATOR_DEBUG_LEVEL == 2
 };
 
-_CONSTEXPR20 void _Container_base12::_Orphan_all_unlocked_v3() noexcept {
+_CONSTEXPR20 void _Container_base12::_Orphan_all_unlocked_v3() const noexcept {
     if (!_Myproxy) { // no proxy, already done
         return;
     }

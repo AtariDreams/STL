@@ -196,7 +196,7 @@ namespace experimental {
 
         explicit suspend_if(bool _Condition) noexcept : _Ready(!_Condition) {}
 
-        bool await_ready() noexcept {
+        bool await_ready() const noexcept {
             return _Ready;
         }
 
