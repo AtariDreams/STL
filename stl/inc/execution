@@ -610,7 +610,7 @@ public:
             // to be well defined on all hardware this implementation targets.
             // Hardware with trap representations or similar must not use this implementation.
             _Desired_t = _Local_t + 1U;
-        } while (!_Top.compare_exchange_strong(_Local_t, _Desired_t)); // if a data race occurred, try again
+        } while (!_Top.compare_exchange_weak(_Local_t, _Desired_t)); // if a data race occurred, try again
 
         return true;
     }
