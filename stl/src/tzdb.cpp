@@ -55,7 +55,7 @@ namespace {
 
     [[nodiscard]] _Icu_api_level _Init_icu_functions(_Icu_api_level _Level) noexcept {
         while (!_Icu_functions._Api_level.compare_exchange_weak(
-            _Level, _Icu_api_level::_Detecting, _STD memory_order_acq_rel)) {
+            _Level, _Icu_api_level::_Detecting, _STD memory_order_release, _STD memory_order_aquire)) {
             if (_Level > _Icu_api_level::_Detecting) {
                 return _Level;
             }
